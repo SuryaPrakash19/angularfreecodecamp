@@ -1,0 +1,15 @@
+<hinv-header #heading></hinv-header>
+<div style="font-weight:bold;">{{ roomHeader }}</div>
+<div *ngIf="!hideRooms ">
+    <label for="numberOfRooms">Total Number of Rooms:</label>
+    <p id="numberOfRooms" [ngStyle]="{'color':rooms.totalRooms>0?'green':'red'}">{{ rooms.totalRooms }}</p>
+</div>
+<button (click)="toggle()">Toggle</button>
+<div *ngIf="selectedRoom">{{selectedRoom | json}}</div>
+<div>Available Rooms:{{rooms.availableRooms?? "No Rooms"}}</div>
+<div><button (click)="addRoom()">Add Room</button></div>
+<div *ngIf="rooms.availableRooms && rooms.availableRooms>0">
+
+    <hinv-rooms-list *ngIf="!hideRooms" [title]="title" [roomsList]="roomsList"
+        (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
+</div>
