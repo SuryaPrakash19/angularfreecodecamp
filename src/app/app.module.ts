@@ -10,11 +10,29 @@ import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
 
 @NgModule({
-  declarations: [AppComponent, RoomsComponent, RoomsListComponent, HeaderComponent, ContainerComponent, EmployeeComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, NgbModule],
-  providers: [],
+  declarations: [
+    AppComponent,
+    RoomsComponent,
+    RoomsListComponent,
+    HeaderComponent,
+    ContainerComponent,
+    EmployeeComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgbModule,
+  ],
+  providers: [
+    {
+      provide: APP_SERVICE_CONFIG,
+      useValue: APP_CONFIG,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

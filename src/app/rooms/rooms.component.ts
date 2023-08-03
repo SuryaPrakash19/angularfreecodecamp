@@ -13,6 +13,7 @@ import {
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
@@ -46,6 +47,7 @@ export class RoomsComponent
   }
 
   ngOnInit(): void {
+    console.log(environment);
     this.headingElement.nativeElement.children[0].style.color = 'red';
     this.roomsList = this.roomsService.getRooms();
   }
