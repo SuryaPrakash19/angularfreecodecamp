@@ -1,11 +1,13 @@
 import {
   Component,
   ElementRef,
+  Inject,
   OnInit,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
 import { RoomsComponent } from './rooms/rooms.component';
+import { localStorageToken } from './localstorage.token';
 
 @Component({
   selector: 'hinv-root',
@@ -17,12 +19,14 @@ export class AppComponent implements OnInit {
   @ViewChild('name', { read: ElementRef, static: true }) name!: ElementRef;
   // @ViewChild('user', { read: ViewContainerRef, static: true })
   VCR!: ViewContainerRef;
-  constructor() {
+  constructor(@Inject(localStorageToken) private locStorage: any) {
     this.role = 'admin';
   }
   ngOnInit(): void {
     this.name.nativeElement.innerHTML = 'Hilton Hotel';
     // const roomsCompRef = this.VCR.createComponent(RoomsComponent);
     // roomsCompRef.instance.rooms.totalRooms = 50;
+    this.locStorage.setItem('name', 'Hilton Hotel'); // this is better as we can replace localstorage with something else in the service without making any changes here.
+    localStorage.setItem('name2', 'sdfsf');
   }
 }

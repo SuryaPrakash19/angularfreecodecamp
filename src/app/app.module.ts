@@ -11,7 +11,7 @@ import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +26,7 @@ import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
+    HttpClientModule,
   ],
   providers: [
     {
