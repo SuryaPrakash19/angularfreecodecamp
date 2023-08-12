@@ -49,7 +49,9 @@ export class RoomsComponent
   ngOnInit(): void {
     console.log(environment);
     this.headingElement.nativeElement.children[0].style.color = 'red';
-    this.roomsList = this.roomsService.getRooms();
+    this.roomsService.getRooms().subscribe((response) => {
+      this.roomsList = response;
+    });
   }
   ngAfterViewInit(): void {
     this.headerComp.title = 'Rooms View';
@@ -68,7 +70,7 @@ export class RoomsComponent
   }
   addRoom() {
     const room: RoomList = {
-      roomNumber: 4,
+      roomNumber: '4',
       roomType: 'Quadra Room',
       ameneties: 'AC, Wifi, TV',
       price: 55000,
