@@ -5,6 +5,8 @@
     <p id="numberOfRooms" [ngStyle]="{'color':rooms.totalRooms>0?'green':'red'}">{{ rooms.totalRooms }}</p>
 </div>
 <button (click)="toggle()">Toggle</button>
+<button (click)="editRoom()">Edit Room</button>
+<button (click)="deleteRoom()">Delete Room</button>
 <div *ngIf="selectedRoom">{{selectedRoom | json}}</div>
 <div>Available Rooms:{{rooms.availableRooms?? "No Rooms"}}</div>
 <div><button (click)="addRoom()">Add Room</button></div>
@@ -13,3 +15,4 @@
     <hinv-rooms-list *ngIf="!hideRooms" [title]="title" [roomsList]="roomsList"
         (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
 </div>
+<h1>{{totalBytes}} loaded</h1>
