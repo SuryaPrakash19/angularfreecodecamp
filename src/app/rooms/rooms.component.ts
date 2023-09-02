@@ -9,6 +9,8 @@ import {
   QueryList,
   ViewChildren,
   OnDestroy,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
@@ -22,7 +24,7 @@ import { HttpEventType, HttpUrlEncodingCodec } from '@angular/common/http';
   styleUrls: ['./rooms.component.css'],
 })
 export class RoomsComponent
-  implements OnInit, DoCheck, AfterViewInit, AfterViewChecked
+  implements OnInit, DoCheck, AfterViewInit, AfterViewChecked, OnChanges
 {
   @ViewChild('heading', { read: ElementRef, static: true })
   headingElement!: ElementRef;
@@ -36,11 +38,9 @@ export class RoomsComponent
   };
   totalBytes: number = 0;
   selectedRoom!: RoomList;
-  roomsList: RoomList[] = [];
+  roomsList: RoomList[] | null = [];
   title: string = 'List of Rooms';
-  stream = new Observable((observer) => {
-    observer.next('user1');
-  });
+  room$ = this.roomsService.getRooms$;
   toggle() {
     this.hideRooms = !this.hideRooms;
     if (!this.hideRooms) this.title = 'List of Rooms';
@@ -72,35 +72,35 @@ export class RoomsComponent
     this.roomHeader = 'Rooms';
     this.hideRooms = false;
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngonChanges is called');
+  }
 
   ngOnInit(): void {
     console.log(environment);
     this.headingElement.nativeElement.children[0].style.color = 'red';
-    this.roomsService.getRooms().subscribe((response) => {
-      this.roomsList = response;
-      this.stream.subscribe((response) => {
-        console.log(response);
-      });
-      this.roomsService.getPhotos().subscribe((event) => {
-        switch (event.type) {
-          case HttpEventType.Sent: {
-            console.log('Request has been made!');
-            break;
-          }
-          case HttpEventType.ResponseHeader: {
-            console.log('Request success!');
-            break;
-          }
-          case HttpEventType.DownloadProgress: {
-            this.totalBytes += event.loaded;
-            console.log('Total bytes: ', this.totalBytes);
-            break;
-          }
-          case HttpEventType.Response: {
-            console.log(event.body);
-          }
+    // this.roomsService.getRooms$.subscribe((response) => {
+    //   this.roomsList = response;
+    // });
+    this.roomsService.getPhotos().subscribe((event) => {
+      switch (event.type) {
+        case HttpEventType.Sent: {
+          console.log('Request has been made!');
+          break;
         }
-      });
+        case HttpEventType.ResponseHeader: {
+          console.log('Request success!');
+          break;
+        }
+        case HttpEventType.DownloadProgress: {
+          this.totalBytes += event.loaded;
+          console.log('Total bytes: ', this.totalBytes);
+          break;
+        }
+        case HttpEventType.Response: {
+          console.log(event.body);
+        }
+      }
     });
   }
   ngAfterViewInit(): void {

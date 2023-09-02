@@ -3,6 +3,7 @@ import { RoomList, photoList } from '../rooms';
 import { APP_SERVICE_CONFIG } from '../../AppConfig/appconfig.service';
 import { AppConfig } from '../../AppConfig/appconfig.interface';
 import { HttpClient, HttpRequest } from '@angular/common/http';
+import { catchError, of, shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,12 @@ export class RoomsService {
   ) {
     console.log(this.config.apiEndpoint);
   }
+  getRooms$ = this.http.get<RoomList[]>('/api/room').pipe(
+    catchError((err) => {
+      console.log(err);
+      return of([]);
+    })
+  );
   getRooms() {
     return this.http.get<RoomList[]>('/api/rooms');
   }

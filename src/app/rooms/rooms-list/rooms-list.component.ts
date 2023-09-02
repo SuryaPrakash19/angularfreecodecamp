@@ -10,6 +10,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { RoomList } from '../rooms';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'hinv-rooms-list',
@@ -18,7 +19,7 @@ import { RoomList } from '../rooms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoomsListComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() roomsList: RoomList[] = [];
+  @Input() roomsList: RoomList[] | null = [];
   @Input() title: string = '';
   @Output() selectedRoom = new EventEmitter<RoomList>();
   constructor() {}
@@ -30,8 +31,20 @@ export class RoomsListComponent implements OnInit, OnChanges, OnDestroy {
   selectRoom(room: RoomList) {
     this.selectedRoom.emit(room);
   }
-  ngOnInit(): void {}
+  streamSubscriber!: Subscription;
+  stream = new Observable((observer) => {
+    let i: number = 0;
+    setInterval(() => {
+      observer.next(i++);
+    }, 1000);
+  });
+  ngOnInit(): void {
+    this.streamSubscriber = this.stream.subscribe((response) => {
+      console.log(response);
+    });
+  }
   ngOnDestroy() {
     console.log('destroyed');
+    this.streamSubscriber.unsubscribe();
   }
 }
