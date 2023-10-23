@@ -11,7 +11,8 @@ import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { RequestInterceptor } from './request.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,11 @@ import { HttpClientModule } from '@angular/common/http';
     {
       provide: APP_SERVICE_CONFIG,
       useValue: APP_CONFIG,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

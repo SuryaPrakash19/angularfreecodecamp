@@ -16,12 +16,14 @@ export class RoomsService {
   ) {
     console.log(this.config.apiEndpoint);
   }
-  getRooms$ = this.http.get<RoomList[]>('/api/room').pipe(
-    catchError((err) => {
-      console.log(err);
-      return of([]);
-    })
-  );
+  getRooms$ = this.http
+    .get<RoomList[]>('/api/rooms', { headers: { token: 'asdfnsgkjj' } })
+    .pipe(
+      catchError((err) => {
+        console.log(err);
+        return of([]);
+      })
+    );
   getRooms() {
     return this.http.get<RoomList[]>('/api/rooms');
   }
