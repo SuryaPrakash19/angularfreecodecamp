@@ -13,7 +13,7 @@
 <div><button (click)="addRoom()">Add Room</button></div>
 <div *ngIf="rooms.availableRooms && rooms.availableRooms>0">
 
-    <hinv-rooms-list *ngIf="!hideRooms && (room$|async) as rooms" [title]="title" [roomsList]="rooms"
+    <hinv-rooms-list *ngIf="!hideRooms && (room$|async) as rooms" [title]="title" [roomsList]="roomsList"
         (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
 </div>
 <h1>{{totalBytes}} loaded</h1>

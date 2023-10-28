@@ -79,9 +79,9 @@ export class RoomsComponent
   ngOnInit(): void {
     console.log(environment);
     this.headingElement.nativeElement.children[0].style.color = 'red';
-    // this.roomsService.getRooms$.subscribe((response) => {
-    //   this.roomsList = response;
-    // });
+    this.roomsService.getRooms$.subscribe((response) => {
+      this.roomsList = response;
+    });
     this.roomsService.getPhotos().subscribe((event) => {
       switch (event.type) {
         case HttpEventType.Sent: {
