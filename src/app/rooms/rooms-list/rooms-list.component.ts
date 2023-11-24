@@ -45,6 +45,6 @@ export class RoomsListComponent implements OnInit, OnChanges, OnDestroy {
   }
   ngOnDestroy() {
     console.log('destroyed');
-    this.streamSubscriber.unsubscribe();
+    this.streamSubscriber?.unsubscribe();
   }
 }
