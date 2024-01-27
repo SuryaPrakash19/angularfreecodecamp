@@ -18,6 +18,12 @@ const routes: Routes = [
       return import('./employee/employee.module').then((m) => m.EmployeeModule);
     },
   },
+  {
+    path: 'booking',
+    loadChildren: () => {
+      return import('./booking/booking.module').then((m) => m.BookingModule);
+    },
+  },
   { path: '**', component: NotFoundComponent },
 ];
 

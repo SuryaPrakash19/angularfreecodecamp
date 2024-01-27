@@ -18,6 +18,7 @@ import { RoomsService } from './services/rooms.service';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpEventType, HttpUrlEncodingCodec } from '@angular/common/http';
+import { ConfigService } from '../services/config.service';
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
@@ -67,13 +68,16 @@ export class RoomsComponent
       this.roomsList = res;
     });
   }
-  constructor(private roomsService: RoomsService) {
+  constructor(
+    private roomsService: RoomsService,
+    private config: ConfigService
+  ) {
     this.rooms.availableRooms = this.rooms.totalRooms - this.rooms.bookedRooms;
     this.roomHeader = 'Rooms';
     this.hideRooms = false;
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngonChanges is called');
+    // console.log('ngonChanges is called');
   }
 
   ngOnInit(): void {
@@ -109,11 +113,11 @@ export class RoomsComponent
   }
 
   ngAfterViewChecked() {
-    console.log('afterviewchecked is called');
+    // console.log('afterviewchecked is called');
   }
 
   ngDoCheck() {
-    console.log('DoCheck is called');
+    // console.log('DoCheck is called');
   }
   selectRoom(room: RoomList) {
     this.selectedRoom = room;

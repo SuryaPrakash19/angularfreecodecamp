@@ -22,6 +22,7 @@ import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './hover.directive';
 import { EmailValidatorDirective } from './emailValidator/email-validator.directive';
 import { EmployeeRoutingModule } from './employee/employee-routing.module';
+import { RouteConfigToken } from './services/routeConfig.service';
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -57,6 +58,7 @@ function initFactory(initService: InitService) {
       provide: APP_SERVICE_CONFIG,
       useValue: APP_CONFIG,
     },
+    { provide: RouteConfigToken, useValue: { title: 'Home' } },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,

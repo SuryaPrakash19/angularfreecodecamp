@@ -9,6 +9,7 @@ import {
 import { RoomsComponent } from './rooms/rooms.component';
 import { localStorageToken } from './localstorage.token';
 import { InitService } from './init.service';
+import { ConfigService } from './services/config.service';
 
 @Component({
   selector: 'hinv-root',
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit {
   VCR!: ViewContainerRef;
   constructor(
     private initService: InitService,
-    @Inject(localStorageToken) private locStorage: any
+    @Inject(localStorageToken) private locStorage: any,
+    private config: ConfigService
   ) {
     this.role = 'admin';
   }
