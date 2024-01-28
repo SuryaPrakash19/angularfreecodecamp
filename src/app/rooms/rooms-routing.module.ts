@@ -3,13 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { RoomsComponent } from './rooms.component';
 import { RoomsAddComponent } from './rooms-add/rooms-add.component';
 import { RoomsBookingComponent } from './rooms-booking/rooms-booking.component';
+import { roomGuard } from './gaurds/room.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: RoomsComponent,
+    //canActivateChild: [roomGuard],
     children: [
-      { path: 'add', component: RoomsAddComponent },
+      {
+        path: 'add',
+        component: RoomsAddComponent,
+      },
       { path: ':roomid', component: RoomsBookingComponent },
     ],
   },
