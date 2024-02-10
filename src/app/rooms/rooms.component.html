@@ -2,19 +2,20 @@
 <!-- {{room$|async|json}} -->
 <div style="font-weight:bold;">{{ roomHeader }}</div>
 <div *ngIf="!hideRooms ">
-    <label for="numberOfRooms">Total Number of Rooms:</label>
-    <p id="numberOfRooms" [ngStyle]="{'color':rooms.totalRooms>0?'green':'red'}">{{ rooms.totalRooms }}</p>
+    <!-- <label for="numberOfRooms">Total Number of Rooms:</label> -->
+    <p id="numberOfRooms" [ngStyle]="{'color':rooms.totalRooms>0?'green':'red'}">Number of rooms:{{ rooms.totalRooms }}
+    </p>
 </div>
-<button (click)="toggle()">Toggle</button>
+<!-- <button (click)="toggle()">Toggle</button>
 <button (click)="editRoom()">Edit Room</button>
-<button (click)="deleteRoom()">Delete Room</button>
+<button (click)="deleteRoom()">Delete Room</button> -->
 <div *ngIf="selectedRoom">{{selectedRoom | json}}</div>
 <div>Available Rooms:{{rooms.availableRooms?? "No Rooms"}}</div>
-<div><button routerLink="add">Add Room</button></div>
+<div><button class="btn btn-success" routerLink="add">Add Room</button></div>
+<router-outlet></router-outlet>
 <div *ngIf="rooms.availableRooms && rooms.availableRooms>0">
 
     <hinv-rooms-list *ngIf="!hideRooms && (room$|async) as rooms" [title]="title" [roomsList]="roomsList"
         (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
 </div>
-<h1>{{totalBytes}} loaded</h1>
-<router-outlet></router-outlet>
+<!-- <h1>{{totalBytes}} loaded</h1> -->

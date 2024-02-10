@@ -1,7 +1,7 @@
 <form class="" (ngSubmit)="AddRoom()" #roomsForm="ngForm">
     <div class="form-group">
         <input required type="text" name="roomType" class="form-control" placeholder="Room Type"
-            [(ngModel)]="room.roomType">
+            [(ngModel)]="room.roomType" [ngModelOptions]="{updateOn:'blur'}">
     </div>
     <div class="form-group">
         <input required minlength="5" maxlength="20" type="text" name="amenities" class="form-control"
@@ -34,8 +34,8 @@
 <div *ngIf="this.successMessage!=''" class="alert">
     {{successMessage}}
 </div>
-{{roomsForm.valid}}
+<!-- {{roomsForm.valid}}
 {{roomsForm.pristine}}
 {{roomsForm.dirty}}
 {{roomsForm.valid}}
-{{roomsForm.value|json}}
+{{roomsForm.value|json}} -->
