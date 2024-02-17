@@ -16,12 +16,13 @@ import { Observable, Subscription } from 'rxjs';
   selector: 'hinv-rooms-list',
   templateUrl: './rooms-list.component.html',
   styleUrls: ['./rooms-list.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoomsListComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() roomsList: RoomList[] | null = [];
+  @Input() roomsList: RoomList[] = [];
   @Input() title: string = '';
   @Output() selectedRoom = new EventEmitter<RoomList>();
+  @Input() price: number = 0;
   constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);

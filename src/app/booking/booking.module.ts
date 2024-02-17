@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BookingRoutingModule } from './booking-routing.module';
 import { BookingComponent } from './booking.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -26,6 +26,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatIconModule,
     MatExpansionModule,
     MatCheckboxModule,
+    MatSnackBarModule,
   ],
 })
 export class BookingModule {}

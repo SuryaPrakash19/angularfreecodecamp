@@ -13,9 +13,14 @@
 <div>Available Rooms:{{rooms.availableRooms?? "No Rooms"}}</div>
 <div><button class="btn btn-success" routerLink="add">Add Room</button></div>
 <router-outlet></router-outlet>
+
+<div>
+    <label for="priceFilter">Filter by Price:</label>
+    <input type="number" class="form-control" [formControl]="priceFilter">
+</div>
 <div *ngIf="rooms.availableRooms && rooms.availableRooms>0">
 
-    <hinv-rooms-list *ngIf="!hideRooms && (room$|async) as rooms" [title]="title" [roomsList]="roomsList"
-        (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
+    <hinv-rooms-list [price]="priceFilter.value" *ngIf="!hideRooms && (room$|async) as rooms" [title]="title"
+        [roomsList]="roomsList" (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
 </div>
 <!-- <h1>{{totalBytes}} loaded</h1> -->

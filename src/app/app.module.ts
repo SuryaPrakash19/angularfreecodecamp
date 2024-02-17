@@ -23,6 +23,7 @@ import { HoverDirective } from './hover.directive';
 import { EmailValidatorDirective } from './emailValidator/email-validator.directive';
 import { EmployeeRoutingModule } from './employee/employee-routing.module';
 import { RouteConfigToken } from './services/routeConfig.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -52,6 +53,7 @@ function initFactory(initService: InitService) {
     MatListModule,
     FormsModule,
     AppRoutingModule,
+    MatSnackBarModule,
   ],
   providers: [
     {

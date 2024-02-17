@@ -19,6 +19,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpEventType, HttpUrlEncodingCodec } from '@angular/common/http';
 import { ConfigService } from '../services/config.service';
+import { FormControl } from '@angular/forms';
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
@@ -39,7 +40,7 @@ export class RoomsComponent
   };
   totalBytes: number = 0;
   selectedRoom!: RoomList;
-  roomsList: RoomList[] | null = [];
+  roomsList: RoomList[] = [];
   title: string = 'List of Rooms';
   room$ = this.roomsService.getRooms$;
   toggle() {
@@ -107,6 +108,7 @@ export class RoomsComponent
       }
     });
   }
+  priceFilter: FormControl = new FormControl(0);
   ngAfterViewInit(): void {
     this.headerComp.title = 'Rooms View';
     console.log(this.headerComp.title);

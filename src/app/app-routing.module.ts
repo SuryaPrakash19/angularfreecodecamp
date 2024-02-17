@@ -29,6 +29,11 @@ const routes: Routes = [
     },
     //canLoad: [loginGuard],
   },
+  {
+    path: 'comments',
+    loadChildren: () =>
+      import('./comments/comments.module').then((m) => m.CommentsModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
