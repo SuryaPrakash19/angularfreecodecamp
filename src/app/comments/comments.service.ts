@@ -9,7 +9,7 @@ export class CommentsService {
   constructor(private http: HttpClient) {}
   getComments() {
     return this.http.get<Comments[]>(
-      'https://jsonplaceholder.typicode.com/comments'
+      'https://jsonplaceholder.typicode.com/commentsaas'
     );
   }
 }
